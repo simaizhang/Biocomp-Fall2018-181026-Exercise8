@@ -1,3 +1,4 @@
+# Simai Zhang / Exercise8
 #1 
 setwd("~/bio/exercise/Biocomp-Fall2018-181026-Exercise8/")
 result=read.table("UWvMSU_1-22-13.txt", header = T, stringsAsFactors = F)
@@ -5,36 +6,39 @@ result=read.table("UWvMSU_1-22-13.txt", header = T, stringsAsFactors = F)
 # UW score
 UW=result[result$team=="UW",]
 oldUW=UW[,3] # select the score results of UW
-accumUW=c(1:length(oldUW)) # creat a new vector to contain the accmulative score of UW
-# count the accumlative score
+cumUW=c(1:length(oldUW)) # creat a new vector to contain the cumlative score of UW
+# count the cumlative score
 for (i in 1:length(oldUW)) {
-  accumUW[i]=0
+  cumUW[i]=0
   for (n in 1:i) {
-    accumUW[i]=acccumUW[i]+accum[n]
+    cumUW[i]=cumUW[i]+oldMSU[n]
   }
   i = i + 1
 }
-
+cumUW # test the cumlative scores
 # MSU score
 MSU=result[result$team=="MSU",]
 oldMSU=MSU[,3] # select the score results of MSU
-accumMSU=c(1:length(oldMSU)) # creat a new vector to contain the accumlative score of MSU
-# count the accumlative score 
+cumMSU=c(1:length(oldMSU)) # creat a new vector to contain the cumlative score of MSU
+# count the cumlative score 
 for (i in 1:length(oldMSU)) {
-  accumMSU[i]=0
+  cumMSU[i]=0
   for (n in 1:i) {
-    accumMSU[i]=accumMSU[i]+oldMSU[n]
+    cumMSU[i]=cumMSU[i]+oldMSU[n]
   }
   i = i + 1
 }
+cumMSU # test the cumlative scores
+
 timeUW=UW[,1] 
 timeMSU=MSU[,1]
 
 # draw two lines in one plot
-plot(timeUW, accumUW,type = "l",xlab="time", ylab="score")
+plot(timeUW, cumUW,type = "l",xlab="time", ylab="score", main="UW vs MSU Cumlative Scores over Time")
+legend("topleft", c("UW","MSU"), pch=16, col=c("black","blue"))
 par(new=TRUE)
-plot(timeMSU, accumMSU, type = "l", axes = FALSE, xlab="",ylab="",col="blue")
-
+plot(timeMSU, cumMSU, type = "l", axes = FALSE, xlab="",ylab="",col="blue")
+lines(timeMSU, cumMSU,col="blue")
 --------------------------------------------------------------------------
 
 #2 
