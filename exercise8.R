@@ -38,7 +38,7 @@ plot(timeUW, cumUW,type = "l",xlab="time", ylab="score", main="UW vs MSU Cumlati
 legend("topleft", c("UW","MSU"), pch=16, col=c("black","blue"))
 par(new=TRUE)
 plot(timeMSU, cumMSU, type = "l", axes = FALSE, xlab="",ylab="",col="blue")
-lines(timeMSU, cumMSU,col="blue")
+
 --------------------------------------------------------------------------
 
 #2 
